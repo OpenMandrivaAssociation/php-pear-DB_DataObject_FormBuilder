@@ -6,7 +6,7 @@
 Summary:	%{_pearname} - automatically build HTML_QuickForm object from a DB_DataObject derived class
 Name:		php-pear-%{_pearname}
 Version:	1.0.0RC7
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	PHP License
 Group:		Development/PHP
 Source0:	http://pear.php.net/get/%{_pearname}-%{version}.tgz
@@ -16,7 +16,7 @@ Requires(preun): php-pear
 Requires:	php-pear
 BuildArch:	noarch
 BuildRequires:	dos2unix
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 %{_pearname} will aid you in rapid application development using the
