@@ -1,25 +1,24 @@
 %define		_class		DB
 %define		_subclass	DataObject_FormBuilder
-%define		_status		beta
-%define		_pearname	%{_class}_%{_subclass}
+%define		upstream_name	%{_class}_%{_subclass}
 
-Summary:	%{_pearname} - automatically build HTML_QuickForm object from a DB_DataObject derived class
-Name:		php-pear-%{_pearname}
-Version:	1.0.0RC7
-Release:	%mkrel 3
+Summary:	Automatically build HTML_QuickForm object from a DB_DataObject derived class
+Name:		php-pear-%{upstream_name}
+Version:	1.0.0
+Release:	%mkrel 1
 License:	PHP License
 Group:		Development/PHP
-Source0:	http://pear.php.net/get/%{_pearname}-%{version}.tgz
 URL:		http://pear.php.net/package/DB_DataObject_FormBuilder/
+Source0:	http://pear.php.net/get/%{upstream_name}-%{version}.tgz
 Requires(post): php-pear
 Requires(preun): php-pear
 Requires:	php-pear
 BuildArch:	noarch
-BuildRequires:	dos2unix
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	php-pear
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
-%{_pearname} will aid you in rapid application development using the
+%{upstream_name} will aid you in rapid application development using the
 packages DB_DataObject and HTML_QuickForm. For having quick but working
 prototype of your application, simply model the database, run
 DataObject`s CreateTable script over it and write a script that passes
@@ -36,58 +35,38 @@ your derived classes, that you can use to fine-tune the form generation,
 gradually turning the prototypes into fully features forms and you can
 take control of any stage at the process.
 
-In PEAR status of this package is: %{_status}.
-
 %prep
-
 %setup -q -c
-
-find . -type d -perm 0700 -exec chmod 755 {} \;
-find . -type f -perm 0555 -exec chmod 755 {} \;
-find . -type f -perm 0444 -exec chmod 644 {} \;
-
-for i in `find . -type d -name CVS` `find . -type f -name .cvs\*` `find . -type f -name .#\*`; do
-    if [ -e "$i" ]; then rm -rf $i; fi >&/dev/null
-done
-
-# strip away annoying ^M
-find -type f | grep -v ".gif" | grep -v ".png" | grep -v ".jpg" | xargs dos2unix -U
+mv package.xml %{upstream_name}-%{version}/%{upstream_name}.xml
 
 %install
 rm -rf %{buildroot}
 
-install -d %{buildroot}%{_datadir}/pear/%{_class}
+cd %{upstream_name}-%{version}
+pear install --nodeps --packagingroot %{buildroot} %{upstream_name}.xml
+rm -rf %{buildroot}%{_datadir}/pear/.??*
 
-install %{_pearname}-%{version}/*.php %{buildroot}%{_datadir}/pear/%{_class}
+rm -rf %{buildroot}%{_datadir}/pear/docs
+rm -rf %{buildroot}%{_datadir}/pear/tests
 
 install -d %{buildroot}%{_datadir}/pear/packages
-install -m0644 package.xml %{buildroot}%{_datadir}/pear/packages/%{_pearname}.xml
+install -m 644 %{upstream_name}.xml %{buildroot}%{_datadir}/pear/packages
 
 %post
-if [ "$1" = "1" ]; then
-	if [ -x %{_bindir}/pear -a -f %{_datadir}/pear/packages/%{_pearname}.xml ]; then
-		%{_bindir}/pear install --nodeps -r %{_datadir}/pear/packages/%{_pearname}.xml
-	fi
-fi
-if [ "$1" = "2" ]; then
-	if [ -x %{_bindir}/pear -a -f %{_datadir}/pear/packages/%{_pearname}.xml ]; then
-		%{_bindir}/pear upgrade -f --nodeps -r %{_datadir}/pear/packages/%{_pearname}.xml
-	fi
-fi
+pear install --nodeps --soft --force --register-only \
+    %{_datadir}/pear/packages/%{upstream_name}.xml >/dev/null || :
 
 %preun
-if [ "$1" = 0 ]; then
-	if [ -x %{_bindir}/pear -a -f %{_datadir}/pear/packages/%{_pearname}.xml ]; then
-		%{_bindir}/pear uninstall --nodeps -r %{_pearname}
-	fi
+if [ "$1" -eq "0" ]; then
+    pear uninstall --nodeps --ignore-errors --register-only \
+        %{pear_name} >/dev/null || :
 fi
 
 %clean
 rm -rf %{buildroot}
 
 %files
-%defattr(644,root,root,755)
-%{_datadir}/pear/%{_class}/*.php
-%{_datadir}/pear/packages/%{_pearname}.xml
-
-
+%defattr(-,root,root)
+%{_datadir}/pear/%{_class}
+%{_datadir}/pear/data/%{upstream_name}
+%{_datadir}/pear/packages/%{upstream_name}.xml
