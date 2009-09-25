@@ -6,6 +6,7 @@ Summary:	Automatically build HTML_QuickForm object from a DB_DataObject derived 
 Name:		php-pear-%{upstream_name}
 Version:	1.0.0
 Release:	%mkrel 1
+Epoch:      1
 License:	PHP License
 Group:		Development/PHP
 URL:		http://pear.php.net/package/DB_DataObject_FormBuilder/
