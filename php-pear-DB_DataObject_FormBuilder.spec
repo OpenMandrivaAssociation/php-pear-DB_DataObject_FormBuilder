@@ -47,8 +47,8 @@ cd %{upstream_name}-%{version}
 pear install --nodeps --packagingroot %{buildroot} %{upstream_name}.xml
 rm -rf %{buildroot}%{_datadir}/pear/.??*
 
-rm -rf %{buildroot}%{_datadir}/pear/docs
-rm -rf %{buildroot}%{_datadir}/pear/tests
+rm -rf %{buildroot}%{_datadir}/pear/doc
+rm -rf %{buildroot}%{_datadir}/pear/test
 
 install -d %{buildroot}%{_datadir}/pear/packages
 install -m 644 %{upstream_name}.xml %{buildroot}%{_datadir}/pear/packages
