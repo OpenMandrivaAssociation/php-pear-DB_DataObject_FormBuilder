@@ -3,8 +3,8 @@
 %define		upstream_name	%{_class}_%{_subclass}
 
 Name:		php-pear-%{upstream_name}
-Version:	1.0.0
-Release:	%mkrel 2
+Version:	1.0.1
+Release:	%mkrel 1
 Summary:	Automatically build HTML_QuickForm object from a DB_DataObject derived class
 Epoch:      1
 License:	PHP License
@@ -52,6 +52,8 @@ rm -rf %{buildroot}%{_datadir}/pear/tests
 
 install -d %{buildroot}%{_datadir}/pear/packages
 install -m 644 %{upstream_name}.xml %{buildroot}%{_datadir}/pear/packages
+
+rm -f %{buildroot}%{_datadir}/pear/package.php
 
 %clean
 rm -rf %{buildroot}
