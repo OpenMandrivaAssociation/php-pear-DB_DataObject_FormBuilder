@@ -4,7 +4,7 @@
 
 Name:		php-pear-%{upstream_name}
 Version:	1.0.1
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	Automatically build HTML_QuickForm object from a DB_DataObject derived class
 Epoch:      1
 License:	PHP License
@@ -68,7 +68,7 @@ pear install --nodeps --soft --force --register-only \
 %if %mdkversion < 201000
 if [ "$1" -eq "0" ]; then
     pear uninstall --nodeps --ignore-errors --register-only \
-        %{pear_name} >/dev/null || :
+        %{upstream_name} >/dev/null || :
 fi
 %endif
 
