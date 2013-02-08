@@ -4,7 +4,7 @@
 
 Name:		php-pear-%{upstream_name}
 Version:	1.0.1
-Release:	%mkrel 3
+Release:	4
 Summary:	Automatically build HTML_QuickForm object from a DB_DataObject derived class
 Epoch:      1
 License:	PHP License
@@ -19,9 +19,9 @@ BuildRequires:	php-pear
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
-%{upstream_name} will aid you in rapid application development using the
-packages DB_DataObject and HTML_QuickForm. For having quick but working
-prototype of your application, simply model the database, run
+%{upstream_name} will aid you in rapid application development
+using the packages DB_DataObject and HTML_QuickForm. For having quick but
+working prototype of your application, simply model the database, run
 DataObject`s CreateTable script over it and write a script that passes
 one of the resulting objects to the FormBuilder class. The FormBuilder
 class will automatically generate a simple but working HTML_QuickForm
