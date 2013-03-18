@@ -1,2 +1,4 @@
+removed_sources:
+  DB_DataObject_FormBuilder-1.0.1.tgz: 6fb1e0ed26a5be067d5887579dc1bdc71606508c
 sources:
-  "DB_DataObject_FormBuilder-1.0.1.tgz": 6fb1e0ed26a5be067d5887579dc1bdc71606508c
+  DB_DataObject_FormBuilder-1.0.2.tgz: 1d46aae073cea002c685849382d99cd9e91d0d2a

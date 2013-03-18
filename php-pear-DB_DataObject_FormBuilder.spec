@@ -3,14 +3,14 @@
 %define		upstream_name	%{_class}_%{_subclass}
 
 Name:		php-pear-%{upstream_name}
-Version:	1.0.1
-Release:	5
+Version:	1.0.2
+Release:	1
 Summary:	Automatically build HTML_QuickForm object from a DB_DataObject derived class
 Epoch:      1
 License:	PHP License
 Group:		Development/PHP
 URL:		http://pear.php.net/package/DB_DataObject_FormBuilder/
-Source0:	http://download.pear.php.net/package/%{upstream_name}-%{version}.tgz
+Source0:	http://download.pear.php.net/package/DB_DataObject_FormBuilder-%{version}.tgz
 Requires(post): php-pear
 Requires(preun): php-pear
 Requires:	php-pear
@@ -135,4 +135,5 @@ rm -f %{buildroot}%{_datadir}/pear/package.php
 
 * Tue Jul 19 2005 Oden Eriksson <oeriksson@mandriva.com> 0.14.0-1mdk
 - initial Mandriva package (PLD import)
+
 
