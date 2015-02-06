@@ -4,7 +4,7 @@
 
 Name:		php-pear-%{upstream_name}
 Version:	1.0.2
-Release:	1
+Release:	2
 Summary:	Automatically build HTML_QuickForm object from a DB_DataObject derived class
 Epoch:      1
 License:	PHP License
