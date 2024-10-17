@@ -9,7 +9,7 @@ Summary:	Automatically build HTML_QuickForm object from a DB_DataObject derived 
 Epoch:      1
 License:	PHP License
 Group:		Development/PHP
-URL:		http://pear.php.net/package/DB_DataObject_FormBuilder/
+URL:		https://pear.php.net/package/DB_DataObject_FormBuilder/
 Source0:	http://download.pear.php.net/package/DB_DataObject_FormBuilder-%{version}.tgz
 Requires(post): php-pear
 Requires(preun): php-pear
